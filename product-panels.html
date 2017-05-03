@@ -1,0 +1,52 @@
+				<!-- Info Pannels -->
+				<section>
+					<!-- Info Pannels Nav -->
+					<ul class="nav nav-pills">
+						<li ng-class="{ active:panels.isSelected(1) }">
+							<a ng-click="panels.selectTab(1)" href="">Description</a>
+						</li>
+						<li ng-class="{ active:panels.isSelected(2) }">
+							<a ng-click="panels.selectTab(2)" href="">Specification</a>
+						</li>
+						<li ng-class="{ active:panels.isSelected(3) }">
+							<a ng-click="panels.selectTab(3)" href="">Reviews</a>
+						</li>
+					</ul>
+					<!-- Info Pannels -->
+					<div class="panels" ng-show="panels.isSelected(1)">
+						<h4>Description</h4>
+						<p>{{product.description}}</p>
+					</div>
+					<div class="panels" ng-show="panels.isSelected(2)">
+						<h4>Specification</h4>
+						<blockquote>None yet</blockquote>
+					</div>
+					<div class="panels" ng-show="panels.isSelected(3)">
+						<h4>Reviews</h4>
+						<blockquote ng-repeat="review in product.reviews">
+							<b>{{review.stars}}</b>
+							{{review.body}}
+							<cite>by: {{review.author}} on {{review.createdOn | date:'dd/MM/yyyy'}}</cite>
+						</blockquote>
+
+						<!-- Reviews Form -->
+
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+							<h4>Review Preview</h4>
+							<blockquote>
+								<b>Stars: {{reviewCtrl.review.stars}}</b>
+								{{reviewCtrl.review.body}}<br>
+								<cite>by: {{reviewCtrl.review.author}}</cite>
+							</blockquote>
+
+							<div class="form-group">	
+								<select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+                  					<option value="">Rate the Product</option>
+								</select>
+								<textarea class="form-control" placeholder="Write a short review here."  ng-model="reviewCtrl.review.body" required></textarea>
+								<input type="email" class="form-control" placeholder="Your email address here." ng-model="reviewCtrl.review.author" required>
+								<input class="btn" type="submit" value="submit" class="form-control">
+							</div>
+						</form>
+					</div>
+				</section>

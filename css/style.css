@@ -1,0 +1,32 @@
+.container {
+	width: 60%;
+}
+
+.product-header {
+	display: block;
+}
+
+img.main-img {
+	position: relative;
+	height: 100%;
+	width: 100%;
+/*	display: block;*/
+}
+
+li.thumbnail {
+	height: 33.33%;
+	width: 33.33%;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
+
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+
